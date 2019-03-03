@@ -1,13 +1,13 @@
 import json, requests
 # Information for weather of New York City:
-latitude = "40.7141667"
-longitude = "-74.0063889"
-api_key = "d2f730b58dff4f9beda20db37e3973d0"
-#latitude = input("What is the latitude?")
+#latitude = "40.7141667"
+#longitude = "-74.0063889"
+
+latitude = input("What is the latitude?")
 # Asks user for latitude
-#longitude = input("What is the longitude?")
+longitude = input("What is the longitude?")
 # Asks user for longitude
-#api_key = input("What is your api key?")
+api_key = input("What is your api key?")
 # Asks user for api key
 arr = [api_key, latitude, longitude]
 # Puts all the input into an array
@@ -27,22 +27,21 @@ ans = input("Do you want to know the percent humidity, temp, summary or all thre
 # Asks the user value they are looking for
 
 def info(request):
-    for x in arr:
-        temp = data["currently"]["temperature"]
-        summary = data['currently']['summary']
-        percentage = data["currently"]["humidity"]
-        if request == "percent humidity":
-            percentage = percentage*100
-            # Converts decimal value into a percentage
-            return percentage
-            # outputs the percentage
-        elif request == 'temp':
-            return temp," degrees Fahrenheit"
-            # outputs temperature in degrees Fahrenheit
-        elif request == "summary":
-            return "It is currently ",summary
-            # outputs the summary in a sentence
-        elif request == "all three":
-            return "It is currently ",summary,".",temp," degrees Fahrenheit and there is",percentage," percent humidity"
+    temp = data["currently"]["temperature"]
+    summary = data['currently']['summary']
+    percentage = data["currently"]["humidity"]
+    percent = percentage*100
+    if request == "percent humidity":
+        # Converts decimal value into a percentage
+        return percent
+        # outputs the percentage
+    elif request == 'temp':
+        return temp," degrees Fahrenheit"
+        # outputs temperature in degrees Fahrenheit
+    elif request == "summary":
+        return "It is currently ",summary
+        # outputs the summary in a sentence
+    elif request == "all three":
+        return "It is currently",summary,temp,"degrees Fahrenheit and there is",percent,"percent humidity"
 print(info(ans))
 # Calling the function using the answer from the question asked before
